@@ -54,11 +54,15 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothAdapter bluetoothAdapter;
     private Connection connection;
     private Context context;
-
-
-
-
-
+    private byte[] frameMessage;
+    private byte byteBtn4 = 0;
+    private byte byteBtnP = 0;
+    private byte byteBtn0 = 0;
+    private byte byteBtnPlus = 0;
+    private byte byteBtn20 = 0;
+    private byte byteBtnSZ = 0;
+    private byte byteBtnSO = 0;
+    private byte byteBtnMZ = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +74,21 @@ public class MainActivity extends AppCompatActivity {
         initializeBluetoothSPP();
         connection();
         setProgressBar();
+        createFrameMessage();
+
         btn4 = (ToggleButton) findViewById(R.id.toggleBtn4);
+
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendMessage();
+                Log.d(TAG,"wartosc btn4" +btn4.isChecked());
+                if(btn4.isChecked()== true){
+                    byteBtn4 = 1;
+                }else{
+                    byteBtn4 = 0;
+                }
+                createFrameMessage();
             }
         });
         bt.setBluetoothConnectionListener(new BluetoothSPP.BluetoothConnectionListener() {
@@ -93,6 +107,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void createFrameMessage() {
+        frameMessage = new byte[8];
+        frameMessage = new byte[]{byteBtn4, byteBtnP, byteBtn0, byteBtnPlus, byteBtn20, byteBtnSO, byteBtnSZ, byteBtnMZ};
+    }
+
     public void setProgressBar(){
         RoundCornerProgressBar progress1 = (RoundCornerProgressBar) findViewById(R.id.progress_1);
         progress1.setProgressColor(Color.parseColor("#FFD740"));
@@ -156,12 +176,10 @@ public class MainActivity extends AppCompatActivity {
                         BluetoothAdapter.ERROR);
                 switch (state) {
                     case BluetoothAdapter.STATE_OFF:
-
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
                         break;
                     case BluetoothAdapter.STATE_ON:
-
                         makeToast(context.getString(R.string.bluetoothEnable));
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
