@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.sebastian.actuatorapp.MainActivity">
+
+    <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+        android:id="@+id/progress_1"
+        android:layout_height="30dp"
+        android:layout_width="340dp"
+        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/bargraf_percent" />
+
+    <TextView
+        android:id="@+id/bargraf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Percentage open: "
+        android:padding="5dp"/>
+    <TextView
+        android:id="@+id/bargraf_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/bargraf"
+        android:text="50%"
+        android:padding="5dp"
+        />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleBtn4"
+        android:layout_marginTop="92dp"
+        android:layout_marginStart="24dp"
+        android:layout_below="@+id/bargraf"
+        android:layout_alignParentStart="true"
+        android:textOn="4"
+        android:textOff="4"/>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleBtnP"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/toggleBtn4"
+        android:layout_alignStart="@+id/toggleBtn4"
+        android:textOn="P"
+        android:textOff="P"/>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleBtnO"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/toggleBtnP"
+        android:layout_alignStart="@+id/toggleBtnP"
+        android:textOn="O"
+        android:textOff="O"/>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleBtnPlus"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/toggleBtnO"
+        android:layout_alignStart="@+id/toggleBtnO"
+        android:textOn="+"
+        android:textOff="+"/>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleBtn20"
+        android:layout_marginEnd="56dp"
+        android:layout_above="@+id/toggleBtnP"
+        android:layout_alignParentEnd="true"
+        android:checked="false"
+        android:textOn="20"
+        android:textOff="20"/>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleBtnSO"
+        android:layout_above="@+id/toggleBtnO"
+        android:layout_alignStart="@+id/toggleBtn20"
+        android:checked="false"
+        android:textOn="SO"
+        android:textOff="SO"/>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleBtnSZ"
+        android:layout_above="@+id/toggleBtnPlus"
+        android:layout_alignStart="@+id/toggleBtnSO"
+        android:checked="false"
+        android:textOn="SZ"
+        android:textOff="SZ"/>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleBtnMZ"
+        android:layout_alignTop="@+id/toggleBtnPlus"
+        android:layout_alignStart="@+id/toggleBtnSZ"
+        android:checked="false"
+        android:textOn="M/Z"
+        android:textOff="M/Z"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rozparuj"
+        android:id="@+id/btn_unpair"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/toggleBtnPlus" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blink"
+        android:id="@+id/btn_blink"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/indicator_lamp"
+        android:layout_below="@+id/progress_1"
+        android:layout_alignStart="@+id/toggleBtn4"
+        android:layout_marginTop="24dp"
+        android:padding="5dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:id="@id/connect_text"
+        android:text="connect status"
+        android:layout_below="@id/progress_1"
+        android:layout_alignTop="@id/indicator_lamp"
+        android:layout_toRightOf="@id/indicator_lamp" />
+
+
+</RelativeLayout>

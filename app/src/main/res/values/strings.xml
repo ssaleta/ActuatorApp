@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ActuatorApp</string>
+    <string name="bluetoothAvailable">Bluetooth is not available on your device</string>
+    <string name="bluetoothEnable">Bluetooth ON</string>
+</resources>
