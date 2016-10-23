@@ -34,7 +34,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static int REQUEST_ENABLE_BT = 0;
-    private static String MACADRESSHC06 = "98:D3:31:90:32:EE";
+
 
     private @BindView(R.id.bargraf_percent) TextView bargrafInPercent;
     private @BindView(R.id.toggleBtn4)ToggleButton btn4;
