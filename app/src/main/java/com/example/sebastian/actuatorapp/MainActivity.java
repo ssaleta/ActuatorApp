@@ -99,18 +99,17 @@ public class MainActivity extends AppCompatActivity {
         progress1.setProgressBackgroundColor(Color.parseColor("#E0E0E0"));
         progress1.setMax(100);
         progress1.setProgress(50);
-
     }
 
 
     private void initializeBluetoothSPP(){
         bt = new BluetoothSPP(this);
-        BluetoothAdapter bluetoothAdapter = bt.getBluetoothAdapter();
+        bluetoothAdapter = bt.getBluetoothAdapter();
         intentFilter();
 
     }
     private void connection(){
-        connection = new Connection(this, bt);
+        connection = new Connection(this, bt, bluetoothAdapter);
         if(connection.availableBluetooth() == false){
            makeToast(Integer.toString(R.string.bluetoothAvailable));
         }
@@ -138,25 +137,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage(){
-        bt.setupService();
-        bt.startService(BluetoothState.DEVICE_OTHER);
-        bt.connect(MACADRESSHC06);
-        bt.send("Message", true);
+        connection.sendMessage("Message");
         listOfPairedDevices();
     }
 
     public void listOfPairedDevices(){
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
-// If there are paired devices
-        if (pairedDevices.size() > 0) {
-            // Loop through paired devices
-            for (BluetoothDevice device : pairedDevices) {
-                // Add the name and address to an array adapter to show in a ListViewe
-                Log.d(TAG,"paired devices"+ device.getName());
-                Log.d(TAG,"paired devices"+ device.getAddress());
-            }
-        }
+       connection.listOfPairedDevices();
     }
 
 
