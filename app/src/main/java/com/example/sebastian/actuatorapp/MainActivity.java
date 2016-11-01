@@ -30,6 +30,8 @@ import app.akexorcist.bluetotohspp.library.BluetoothState;
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private @BindView(R.id.btn_unpair)Button btnUnpair;
     private @BindView(R.id.btn_blink)Button btnBlink;
     private @BindView(R.id.indicator_lamp)ImageView indicatorLamp;
+
 
 
     private BluetoothSPP bt;
@@ -77,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         createFrameMessage();
 
         btn4 = (ToggleButton) findViewById(R.id.toggleBtn4);
-
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
                     byteBtn4 = 0;
                 }
                 createFrameMessage();
+            }
+        });
+        btnP = (ToggleButton) findViewById(R.id.toggleBtnP);
+        btnP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                erasePairedDevices();
             }
         });
         bt.setBluetoothConnectionListener(new BluetoothSPP.BluetoothConnectionListener() {
@@ -164,6 +173,15 @@ public class MainActivity extends AppCompatActivity {
     public void listOfPairedDevices(){
        connection.listOfPairedDevices();
     }
+    public void erasePairedDevices(){
+        connection.erasePairedDevices();
+        if(connection.erasePairedDevices() == false){
+            makeToast("Erasing paired devices FAILED ");
+        }
+        if(connection.erasePairedDevices() == true){
+            makeToast("Zero paired devices");
+        }
+    }
 
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -192,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
                     case BluetoothAdapter.STATE_DISCONNECTED:
                         Log.d(TAG, "STATE DISCONECTED");
                         indicatorLamp.setImageResource(R.drawable.button_round_red);
-
                         break;
                 }
             }

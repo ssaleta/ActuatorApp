@@ -43,7 +43,8 @@
         android:layout_below="@+id/bargraf"
         android:layout_alignParentStart="true"
         android:textOn="4"
-        android:textOff="4"/>
+        android:textOff="4"
+        android:onClick="send"/>
 
     <ToggleButton
         android:layout_width="wrap_content"
