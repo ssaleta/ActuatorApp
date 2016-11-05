@@ -38,18 +38,18 @@ public class MainActivity extends AppCompatActivity {
     private static int REQUEST_ENABLE_BT = 0;
 
 
-    private @BindView(R.id.bargraf_percent) TextView bargrafInPercent;
-    private @BindView(R.id.toggleBtn4)ToggleButton btn4;
-    private @BindView(R.id.toggleBtnP)ToggleButton btnP;
-    private @BindView(R.id.toggleBtnO)ToggleButton btn0;
-    private @BindView(R.id.toggleBtnPlus)ToggleButton btnPlus;
-    private @BindView(R.id.toggleBtn20)ToggleButton btn20;
-    private @BindView(R.id.toggleBtnSO)ToggleButton btnSO;
-    private @BindView(R.id.toggleBtnSZ)ToggleButton btnSZ;
-    private @BindView(R.id.toggleBtnMZ)ToggleButton btnMZ;
-    private @BindView(R.id.btn_unpair)Button btnUnpair;
-    private @BindView(R.id.btn_blink)Button btnBlink;
-    private @BindView(R.id.indicator_lamp)ImageView indicatorLamp;
+    @BindView(R.id.bargraf_percent) TextView bargrafInPercent;
+    @BindView(R.id.toggleBtn4)ToggleButton btn4;
+    @BindView(R.id.toggleBtnP)ToggleButton btnP;
+    @BindView(R.id.toggleBtnO)ToggleButton btn0;
+    @BindView(R.id.toggleBtnPlus)ToggleButton btnPlus;
+    @BindView(R.id.toggleBtn20)ToggleButton btn20;
+    @BindView(R.id.toggleBtnSO)ToggleButton btnSO;
+    @BindView(R.id.toggleBtnSZ)ToggleButton btnSZ;
+    @BindView(R.id.toggleBtnMZ)ToggleButton btnMZ;
+    @BindView(R.id.btn_unpair)Button btnUnpair;
+    @BindView(R.id.btn_blink)Button btnBlink;
+    @BindView(R.id.indicator_lamp)ImageView indicatorLamp;
 
 
 
@@ -115,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @OnClick(R.id.btn_unpair)
+    void unpair(){
+        makeToast("unpair");
     }
 
     private void createFrameMessage() {
@@ -215,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
 
 
 }

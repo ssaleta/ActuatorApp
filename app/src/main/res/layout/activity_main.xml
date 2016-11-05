@@ -130,7 +130,8 @@
         android:text="Rozparuj"
         android:id="@+id/btn_unpair"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/toggleBtnPlus" />
+        android:layout_alignStart="@+id/toggleBtnPlus"
+        android:onClick="unpair"/>
 
     <Button
         android:layout_width="wrap_content"
