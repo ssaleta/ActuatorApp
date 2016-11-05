@@ -118,8 +118,16 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnClick(R.id.btn_unpair)
     void unpair(){
-        makeToast("unpair");
-    }
+        bt.disconnect();
+        connection.erasePairedDevices();
+
+        if(connection.erasePairedDevices() == true) {
+            makeToast("Disconnected & unpair");
+        }else {
+            makeToast("Disconnected & unpair FAILED!");
+        }
+        }
+
 
     private void createFrameMessage() {
         frameMessage = new byte[8];
