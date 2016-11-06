@@ -7,11 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,17 +19,15 @@ import android.widget.ToggleButton;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
-import app.akexorcist.bluetotohspp.library.BluetoothState;
-import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -75,14 +71,17 @@ public class MainActivity extends AppCompatActivity {
         connection();
         setProgressBar();
         createFrameMessage();
+        periodicalSendFrame();
         bt.setBluetoothConnectionListener(new BluetoothSPP.BluetoothConnectionListener() {
             public void onDeviceConnected(String name, String address) {
                 Log.d(TAG, "CONNECTED MEEN");
             }
+
             public void onDeviceDisconnected() {
                 // Do something when connection was disconnected
                 Log.d(TAG, " DISCONECTED MEEN");
             }
+
             public void onDeviceConnectionFailed() {
                 // Do something when connection failed
             }
@@ -162,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnClick(R.id.toggleBtnSZ)
     void clickBtnSZ(){
-        Log.d(TAG,"wartosc btn4" +btnSZ.isChecked());
+        Log.d(TAG,"wartosc btnSZ" +btnSZ.isChecked());
         if(btnSZ.isChecked()== true){
             byteBtnSZ = 1;
         }else{
@@ -172,22 +171,37 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnClick(R.id.toggleBtnMZ)
     void clickBtnMZ(){
-        Log.d(TAG,"wartosc btn4" +btnSZ.isChecked());
-        if(btnSZ.isChecked()== true){
-            byteBtnSZ = 1;
+        Log.d(TAG,"wartosc btnMZ" +btnMZ.isChecked());
+        if(btnMZ.isChecked()== true){
+            byteBtnMZ = 1;
         }else{
-            byteBtnSZ = 0;
+            byteBtnMZ = 0;
         }
         createFrameMessage();
     }
     @OnClick(R.id.btn_blink)
     void clickBtnBlink(){
-
+    makeToast("Blink");
     }
 
     private void createFrameMessage() {
         frameMessage = new byte[8];
         frameMessage = new byte[]{byteBtn4, byteBtnP, byteBtn0, byteBtnPlus, byteBtn20, byteBtnSO, byteBtnSZ, byteBtnMZ};
+        for(int i = 0;i < frameMessage.length; i++) {
+            Log.d(TAG, Arrays.toString(new byte[]{frameMessage[i]}));
+        }
+    }
+
+    Runnable runnableFrameMessage = new Runnable(){
+        @Override
+        public void run() {
+        Log.d(TAG,Arrays.toString(frameMessage));
+        }
+    };
+
+    public void periodicalSendFrame() {
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(runnableFrameMessage,0,3,TimeUnit.DAYS.SECONDS);
     }
 
     public void setProgressBar(){
