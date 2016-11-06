@@ -35,6 +35,9 @@ public class Connection {
         }
         return checkAvailableBluetooth;
     }
+    public void disconnect(){
+        bt.disconnect();
+    }
     public boolean enableBluetooth(){
         boolean checkEnableBluetooth = true;
         if(!(bt.isBluetoothEnabled())){

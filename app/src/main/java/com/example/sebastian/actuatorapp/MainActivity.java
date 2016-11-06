@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static int REQUEST_ENABLE_BT = 0;
 
-
     @BindView(R.id.bargraf_percent) TextView bargrafInPercent;
     @BindView(R.id.toggleBtn4)ToggleButton btn4;
     @BindView(R.id.toggleBtnP)ToggleButton btnP;
@@ -50,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btn_unpair)Button btnUnpair;
     @BindView(R.id.btn_blink)Button btnBlink;
     @BindView(R.id.indicator_lamp)ImageView indicatorLamp;
-
-
 
     private BluetoothSPP bt;
     private BluetoothAdapter bluetoothAdapter;
@@ -78,56 +75,115 @@ public class MainActivity extends AppCompatActivity {
         connection();
         setProgressBar();
         createFrameMessage();
-
-        btn4 = (ToggleButton) findViewById(R.id.toggleBtn4);
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendMessage();
-                Log.d(TAG,"wartosc btn4" +btn4.isChecked());
-                if(btn4.isChecked()== true){
-                    byteBtn4 = 1;
-                }else{
-                    byteBtn4 = 0;
-                }
-                createFrameMessage();
-            }
-        });
-        btnP = (ToggleButton) findViewById(R.id.toggleBtnP);
-        btnP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                erasePairedDevices();
-            }
-        });
         bt.setBluetoothConnectionListener(new BluetoothSPP.BluetoothConnectionListener() {
             public void onDeviceConnected(String name, String address) {
                 Log.d(TAG, "CONNECTED MEEN");
             }
-
             public void onDeviceDisconnected() {
                 // Do something when connection was disconnected
                 Log.d(TAG, " DISCONECTED MEEN");
             }
-
             public void onDeviceConnectionFailed() {
                 // Do something when connection failed
             }
         });
-
     }
+
     @OnClick(R.id.btn_unpair)
     void unpair(){
-        bt.disconnect();
+        connection.disconnect();
         connection.erasePairedDevices();
-
         if(connection.erasePairedDevices() == true) {
             makeToast("Disconnected & unpair");
         }else {
             makeToast("Disconnected & unpair FAILED!");
         }
         }
+    @OnClick(R.id.toggleBtn4)
+    void clickBtn4(){
+        sendMessage();
+        Log.d(TAG, "wartosc btn4" + btn4.isChecked());
+        if(btn4.isChecked()== true){
+            byteBtn4 = 1;
+        }else{
+            byteBtn4 = 0;
+        }
+        createFrameMessage();
+    }
+    @OnClick(R.id.toggleBtnP)
+    void clickBtnP(){
+        Log.d(TAG,"wartosc btnP" +btnP.isChecked());
+        if(btnP.isChecked()== true){
+            byteBtnP = 1;
+        }else{
+            byteBtnP = 0;
+        }
+        createFrameMessage();
+    }
+    @OnClick(R.id.toggleBtnO)
+    void clickBtnO(){
+        Log.d(TAG, "wartosc btnO" + btn0.isChecked());
+        if(btn0.isChecked()== true){
+            byteBtn0 = 1;
+        }else{
+            byteBtn0 = 0;
+        }
+        createFrameMessage();
+    }
+    @OnClick(R.id.toggleBtnPlus)
+    void clickBtnPlus(){
+        Log.d(TAG,"wartosc btnPlus" +btnPlus.isChecked());
+        if(btnPlus.isChecked()== true){
+            byteBtnPlus = 1;
+        }else{
+            byteBtnPlus = 0;
+        }
+        createFrameMessage();
+    }
+    @OnClick(R.id.toggleBtn20)
+    void clickBtn20(){
+        Log.d(TAG,"wartosc btn20" +btn20.isChecked());
+        if(btn20.isChecked()== true){
+            byteBtn20 = 1;
+        }else{
+            byteBtn20 = 0;
+        }
+        createFrameMessage();
+    }
+    @OnClick(R.id.toggleBtnSO)
+    void clickBtnSO(){
+        Log.d(TAG,"wartosc btnSO" +btnSO.isChecked());
+        if(btnSO.isChecked()== true){
+            byteBtnSO = 1;
+        }else{
+            byteBtnSO = 0;
+        }
+        createFrameMessage();
+    }
+    @OnClick(R.id.toggleBtnSZ)
+    void clickBtnSZ(){
+        Log.d(TAG,"wartosc btn4" +btnSZ.isChecked());
+        if(btnSZ.isChecked()== true){
+            byteBtnSZ = 1;
+        }else{
+            byteBtnSZ = 0;
+        }
+        createFrameMessage();
+    }
+    @OnClick(R.id.toggleBtnMZ)
+    void clickBtnMZ(){
+        Log.d(TAG,"wartosc btn4" +btnSZ.isChecked());
+        if(btnSZ.isChecked()== true){
+            byteBtnSZ = 1;
+        }else{
+            byteBtnSZ = 0;
+        }
+        createFrameMessage();
+    }
+    @OnClick(R.id.btn_blink)
+    void clickBtnBlink(){
 
+    }
 
     private void createFrameMessage() {
         frameMessage = new byte[8];
@@ -142,13 +198,12 @@ public class MainActivity extends AppCompatActivity {
         progress1.setProgress(50);
     }
 
-
     private void initializeBluetoothSPP(){
         bt = new BluetoothSPP(this);
         bluetoothAdapter = bt.getBluetoothAdapter();
         intentFilter();
-
     }
+
     private void connection(){
         connection = new Connection(this, bt, bluetoothAdapter);
         if(connection.availableBluetooth() == false){
@@ -195,12 +250,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-
             if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,
                         BluetoothAdapter.ERROR);
@@ -217,7 +270,6 @@ public class MainActivity extends AppCompatActivity {
                     case BluetoothAdapter.STATE_CONNECTED:
                         indicatorLamp.setImageResource(R.drawable.button_round_green);
                         Log.d(TAG, "STATE CONECTED");
-
                         break;
                     case BluetoothAdapter.STATE_DISCONNECTED:
                         Log.d(TAG, "STATE DISCONECTED");
@@ -227,7 +279,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-
-
-
 }

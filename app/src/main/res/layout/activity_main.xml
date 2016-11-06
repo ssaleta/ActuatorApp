@@ -44,7 +44,7 @@
         android:layout_alignParentStart="true"
         android:textOn="4"
         android:textOff="4"
-        android:onClick="send"/>
+        android:onClick="clickBtn4"/>
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -55,7 +55,8 @@
         android:layout_below="@+id/toggleBtn4"
         android:layout_alignStart="@+id/toggleBtn4"
         android:textOn="P"
-        android:textOff="P"/>
+        android:textOff="P"
+        android:onClick="clickBtnP"/>
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -66,7 +67,8 @@
         android:layout_below="@+id/toggleBtnP"
         android:layout_alignStart="@+id/toggleBtnP"
         android:textOn="O"
-        android:textOff="O"/>
+        android:textOff="O"
+        android:onClick="clickBtnO"/>
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -77,7 +79,8 @@
         android:layout_below="@+id/toggleBtnO"
         android:layout_alignStart="@+id/toggleBtnO"
         android:textOn="+"
-        android:textOff="+"/>
+        android:textOff="+"
+        android:onClick="clickBtnPlus"/>
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -89,7 +92,8 @@
         android:layout_alignParentEnd="true"
         android:checked="false"
         android:textOn="20"
-        android:textOff="20"/>
+        android:textOff="20"
+        android:onClick="clickBtn20"/>
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -100,7 +104,8 @@
         android:layout_alignStart="@+id/toggleBtn20"
         android:checked="false"
         android:textOn="SO"
-        android:textOff="SO"/>
+        android:textOff="SO"
+        android:onClick="clickBtnSO"/>
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -111,7 +116,8 @@
         android:layout_alignStart="@+id/toggleBtnSO"
         android:checked="false"
         android:textOn="SZ"
-        android:textOff="SZ"/>
+        android:textOff="SZ"
+        android:onClick="clickBtnSZ"/>
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -122,7 +128,8 @@
         android:layout_alignStart="@+id/toggleBtnSZ"
         android:checked="false"
         android:textOn="M/Z"
-        android:textOff="M/Z"/>
+        android:textOff="M/Z"
+        android:onClick="clickBtnM/Z"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -140,7 +147,8 @@
         android:id="@+id/btn_blink"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp" />
+        android:layout_marginEnd="30dp"
+        android:onClick="clickBtnBlink"/>
 
     <ImageView
         android:layout_width="40dp"
