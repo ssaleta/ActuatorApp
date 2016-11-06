@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothAdapter bluetoothAdapter;
     private Connection connection;
     private Context context;
+    private Handler handlerCheckConnection;
     private byte[] frameMessage;
     private byte byteBtn4 = 0;
     private byte byteBtnP = 0;
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         indicatorLamp.setImageResource(R.drawable.button_round_red);
         initializeBluetoothSPP();
         connection();
+        handlerCheckConnection = new Handler();
         setProgressBar();
         createFrameMessage();
         periodicalSendFrame();
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_unpair)
     void unpair(){
+        handlerCheckConnection.removeCallbacks(runnableConnectionCheck);
         connection.disconnect();
         connection.erasePairedDevices();
         if(connection.erasePairedDevices() == true) {
@@ -198,10 +202,26 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,Arrays.toString(frameMessage));
         }
     };
+    Runnable runnableConnectionCheck = new Runnable(){
+        @Override
+        public void run(){
+            checkConnection();
+        }
+    };
 
     public void periodicalSendFrame() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         executor.scheduleAtFixedRate(runnableFrameMessage,0,3,TimeUnit.DAYS.SECONDS);
+    }
+    public void checkConnection(){
+        handlerCheckConnection.postDelayed(new Runnable(){
+            @Override
+                    public void run(){
+           Log.d(TAG, "check Connection!");
+                connection.disconnect();
+                erasePairedDevices();
+            }
+        }, 180000);
     }
 
     public void setProgressBar(){
@@ -283,11 +303,13 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case BluetoothAdapter.STATE_CONNECTED:
                         indicatorLamp.setImageResource(R.drawable.button_round_green);
+                        handlerCheckConnection.removeCallbacks(runnableConnectionCheck);
                         Log.d(TAG, "STATE CONECTED");
                         break;
                     case BluetoothAdapter.STATE_DISCONNECTED:
                         Log.d(TAG, "STATE DISCONECTED");
                         indicatorLamp.setImageResource(R.drawable.button_round_red);
+                        checkConnection();
                         break;
                 }
             }
