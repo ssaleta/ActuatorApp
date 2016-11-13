@@ -14,7 +14,7 @@ Android and Arduino project to to simulate control the actuator. I had tested th
 - RoundCornerProgressBar
 
 #Arduino Connection:
-- I used Fritzing application to make a draw. I have to used HC-05 module on draw but it doesn't matter if you use module HC-05 or HC-06. Only difference is that HC-05 can act as a slave and master whereas HC-06 works only as a slave. 
+- I used HC-05 module on draw but it doesn't matter if you use module HC-05 or HC-06. Only difference is that HC-05 can act as a slave and master whereas HC-06 works only as a slave. 
 ![ScreenShot](https://cloud.githubusercontent.com/assets/12597823/20239854/d7f93aa8-a90a-11e6-9742-56858967ce96.png)
 
 
