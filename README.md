@@ -1,7 +1,7 @@
 #Actuator App
 Android and Arduino project to to simulate control the actuator. I had tested this app on HC-06 module and Arduino Uno. 
 
-#Foundation program:
+#Assumption project:
 - Android 4.3 +
 - Paired android device with bluetooth module by NFC
 - Paired only with one bluetooth module
